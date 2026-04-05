@@ -1,0 +1,1 @@
+<x-public.tengah.profile.post :user="$user" />

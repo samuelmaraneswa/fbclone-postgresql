@@ -1,0 +1,1 @@
+<x-public.tengah.profile.tentang :user="$user" />
