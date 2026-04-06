@@ -32,8 +32,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/test-mail', function () {
   try {
     Mail::raw('Halo Samuel, ini email test resmi dari FBclone.', function ($msg) {
-      $msg->from('samuelmaraneswa120@gmail.com', 'FBclone Admin')
-        ->to('samuelmaraneswa80@gmail.com')
+      $msg->to('samuelmaraneswa60@gmail.com')
         ->subject('Test Laravel Email FBclone');
     });
 
