@@ -2,10 +2,10 @@ FROM php:8.2-cli
 
 WORKDIR /app
 
-# Install dependency sistem
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    unzip git curl libzip-dev \
-    && docker-php-ext-install zip pdo pdo_mysql
+    unzip git curl libzip-dev libonig-dev libxml2-dev \
+    && docker-php-ext-install pdo pdo_mysql zip mbstring exif pcntl bcmath
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -13,8 +13,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy project
 COPY . .
 
-# Install Laravel dependencies
+# Install dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Laravel optimization
+RUN php artisan config:cache || true
+RUN php artisan route:cache || true
 
 EXPOSE 10000
 
