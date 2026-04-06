@@ -1,25 +1,32 @@
+# =========================
+# STEP 1: Composer install
+# =========================
+FROM composer:2 AS builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+
+# =========================
+# STEP 2: PHP runtime
+# =========================
 FROM php:8.2-cli
 
 WORKDIR /app
 
-# Install system dependencies
+# Install extension yang dibutuhkan Laravel
 RUN apt-get update && apt-get install -y \
     unzip git curl libzip-dev libonig-dev libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql zip mbstring exif pcntl bcmath
+    && docker-php-ext-install pdo pdo_mysql zip mbstring bcmath
 
-# Install composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Copy hasil dari builder
+COPY --from=builder /app /app
 
-# Copy project
-COPY . .
-
-# Install dependencies
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
-
-# Laravel optimization
-RUN php artisan config:cache || true
-RUN php artisan route:cache || true
-
+# Port Render
 EXPOSE 10000
 
+# Run Laravel
 CMD php artisan serve --host=0.0.0.0 --port=10000
