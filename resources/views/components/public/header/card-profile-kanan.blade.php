@@ -1,4 +1,4 @@
-<div class="w-80">
+<div class="w-full md:w-80">
   <div class="p-1 rounded-lg bg-white shadow-[0_0_15px_rgba(0,0,0,0.12)] mb-3">
 
     <a href="{{route('public.profile')}}" class="flex items-center rounded-lg p-2 gap-2 bg-white cursor-pointer hover:bg-gray-100">

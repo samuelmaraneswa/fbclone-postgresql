@@ -12,7 +12,7 @@
 <div class="bg-white rounded-lg border border-gray-200 shadow-[0_1px_6px_rgba(0,0,0,0.12)]">
   {{-- header post start --}}
   <div class="flex items-center justify-between p-3">
-    <div class="flex items-start gap-3">
+    <div class="flex items-start gap-3 min-w-0 w-full">
       @isset($profile_img)
         <img src="{{asset($profile_img)}}" alt="" class="w-11 h-11 cursor-pointer rounded-full bg-gray-100 p-1">  
       @endisset
@@ -23,11 +23,11 @@
         @endisset
 
         @isset($posting_time)
-          <p class="text-gray-500 text-sm font-semibold">{{$posting_time}}</p>
+          <p class="text-gray-500 text-sm font-semibold truncate">{{$posting_time}}</p>
         @endisset
       </div>
 
-      <a href="" class="text-blue-600 font-semibold">Ikuti</a>
+      <a href="" class="text-blue-600 font-semibold shrink-0">Ikuti</a>
     </div>
     <div class="flex items-center gap-3">
       <button class="px-1.5 py-1 rounded-full cursor-pointer p-2 text-base text-gray-500 hover:bg-gray-200"><i class="fa-solid fa-ellipsis"></i></button>
@@ -80,9 +80,9 @@
     {{-- like & heart end --}}
 
     
-    {{-- commetn & share start --}}
-    <div class="text-base gap-2 flex items-center">
-      <div class="flex items-center gap-1">
+    {{-- comment & share start --}}
+    <div class="text-base gap-2 flex items-center min-w-0">
+      <div class="flex items-center gap-1 min-w-0">
 
         @isset($comment)
           <p class="text-gray-500">{{$comment}}</p>  
@@ -128,7 +128,7 @@
       <p>Suka</p>
 
       {{-- tooltip like --}}
-      <div class="absolute flex bottom-full bg-white rounded-full border border-gray-200 shadow-[0_1px_12px_rgba(0,0,0,0.12)] p-1 text-3xl gap-2 left-0 opacity-0 translate-y-2 scale-95 pointer-events-none transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto z-30">
+      <div class="hidden md:flex absolute bottom-full bg-white rounded-full border border-gray-200 shadow-[0_1px_12px_rgba(0,0,0,0.12)] p-1 text-3xl gap-2 left-0 opacity-0 translate-y-2 scale-95 pointer-events-none transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto z-30">
 
         <button class="p-1 bg-blue-500 text-white rounded-full cursor-pointer"><i class="fa-solid fa-thumbs-up"></i></button>
         <button class="p-1 bg-red-500 text-white rounded-full cursor-pointer"><i class="fa-solid fa-heart"></i></button>
@@ -140,12 +140,12 @@
     </div>
     {{-- like end --}}
 
-    <div class="flex items-center gap-1 hover:bg-gray-100 justify-center rounded-lg cursor-pointer py-1 flex-1">
+    <div class="flex items-center gap-1 hover:bg-gray-100 justify-center rounded-lg cursor-pointer py-1 flex-1 min-w-0">
       <button class=""><i class="fa-solid fa-comment"></i></button>
       <p>Komentari</p>
     </div>
 
-    <div class="flex items-center gap-1 hover:bg-gray-100 justify-center rounded-lg cursor-pointer py-1 flex-1">
+    <div class="flex items-center gap-1 hover:bg-gray-100 justify-center rounded-lg cursor-pointer py-1 flex-1 min-w-0">
       <button><i class="fa-solid fa-share"></i></button>
       <p>Bagikan</p>
     </div>

@@ -1,4 +1,4 @@
-<div class="hidden sidebar fixed top-13 left-0 overflow-y-auto h-[calc(100vh-64px)] overscroll-contain w-70 mt-2 p-2">
+<div class="hidden md:block sidebar fixed top-13 left-0 overflow-y-auto h-[calc(100vh-64px)] overscroll-contain w-70 mt-2 p-2">
   <x-partials.sidebar-kiri.item img="images/img-default.png" text="Neswa Tob" />
   <x-partials.sidebar-kiri.item icon="fa-regular fa-circle" text="Meta AI" color="text-purple-500" />
   <x-partials.sidebar-kiri.item icon="fa-solid fa-user-group" text="Teman" color="text-blue-500" />
