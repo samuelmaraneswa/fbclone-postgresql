@@ -64,7 +64,7 @@
       <div class="modal-action mt-4 flex gap-2 md:gap-1 md:justify-between">
 
         <div class="">
-          <button id="modalLikeIcon" class="modal-like-icon rounded-full h-6 w-6 md:bg-gray-200 hover:bg-gray-300 cursor-pointer text-blue-600"><i class="fa-solid fa-thumbs-up"></i></button>
+          <button id="modalLikeIcon" class="modal-like-icon rounded-full h-6 w-6 md:bg-gray-200 hover:bg-gray-300 cursor-pointer"><i class="fa-solid fa-thumbs-up"></i></button>
           <span class="modal-like-count -ml-1 md:ml-0">{{$total_like ?? '0'}}</span>
         </div>
 
