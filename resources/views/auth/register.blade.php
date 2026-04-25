@@ -61,7 +61,7 @@
         </div>
 
         <div class="p-4 flex flex-col space-y-2">
-          <button class="bg-gray-600 hover:bg-gray-700 cursor-pointer text-white rounded p-2">Submit</button>
+          <button id="submitRegister" class="bg-gray-600 hover:bg-gray-700 cursor-pointer text-white rounded p-2">Submit</button>
           <p class="text-center text-sm">I already have an account. <a href="{{route('login')}}" class="underline hover:text-blue-600">Sign In</a></p>
         </div>
       </div>

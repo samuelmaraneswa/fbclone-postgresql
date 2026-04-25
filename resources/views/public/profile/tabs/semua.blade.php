@@ -2,10 +2,10 @@
   <x-public.tengah.profile.post :user="$user" :notPostTab="true" />
   <x-public.tengah.profile.tentang :user="$user" />
 
-  <div class="bg-white space-y-2">
+  <div class="bg-white space-y-2 px-1">
     <h3 class="text-2xl font-semibold p-3">Teman Anda</h1>
       
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       @for ($i = 0; $i < 4; $i++)
       <x-partials.profile.card-teman />
       @endfor

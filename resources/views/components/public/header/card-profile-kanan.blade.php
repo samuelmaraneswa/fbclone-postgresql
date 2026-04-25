@@ -1,9 +1,11 @@
+@props(['user'])
+
 <div class="w-full md:w-80">
   <div class="p-1 rounded-lg bg-white shadow-[0_0_15px_rgba(0,0,0,0.12)] mb-3">
 
-    <a href="{{route('public.profile')}}" class="flex items-center rounded-lg p-2 gap-2 bg-white cursor-pointer hover:bg-gray-100">
-      <img src="{{asset('images/img-default.png')}}" alt="" class="rounded-full h-10 w-9.5 bg-gray-200 p-1">
-      <p class="font-semibold text-lg">Neswa Tob</p>
+    <a href="{{route('profile.index')}}" class="flex items-center rounded-lg p-2 gap-2 bg-white cursor-pointer hover:bg-gray-100">
+      <img src="{{ $user?->avatar ? asset('storage/' . $user?->avatar) : asset('images/img-default.png')}}" alt="" class="rounded-full h-10 w-9.5 bg-gray-200 p-1 object-cover">
+      <p class="font-semibold text-lg">{{$user?->first_name . ' ' . $user?->last_name}}</p>
     </a>
 
     <hr class="border border-gray-300">

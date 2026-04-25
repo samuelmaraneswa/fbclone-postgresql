@@ -1,7 +1,7 @@
 @props(['user', 'notPostTab' => false])
 
 <div class="flex flex-col bg-white shadow-sm rounded-lg p-4 mt-2">
-  <h1 class="font-semibold text-2xl my-2">Postingan Anda</h1>
+  <h1 class="font-semibold text-lg md:text-2xl my-2">Postingan Anda</h1>
   
   @if ($notPostTab)
     <p class="text-gray-500 mb-2">Postingan terbaru</p>  

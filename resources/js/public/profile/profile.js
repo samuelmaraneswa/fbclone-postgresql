@@ -65,7 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  btnHamburger.addEventListener("click", () => {
-    contentHamburger.classList.toggle("hidden")
-  })
+  if(btnHamburger && contentHamburger){
+    btnHamburger.addEventListener("click", () => {
+      contentHamburger.classList.toggle("hidden")
+    })
+  }
 })

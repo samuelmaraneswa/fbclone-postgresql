@@ -1,3 +1,7 @@
+@php
+  $user = auth()->user();
+@endphp
+
 <div class="md:hidden fixed top-0 left-0 w-full z-50 bg-white">
   <div class="flex items-center justify-between px-3 py-2 bg-white">
     {{-- kiri --}}
@@ -13,11 +17,19 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
 
+      <div class="">
+        <button id="btnNotifMobile" class="bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center">
+          <i class="fa-solid fa-bell" data-type="mobile"></i>
+        </button>
+
+        <x-public.header.card-notif-kanan-mobile />
+      </div>
+
       {{-- mobile search content --}}
       <div id="mobileSearchContent" class="fixed top-0 left-0 w-full h-full bg-black/30 hidden z-60">
         <div class="absolute top-0 left-0 w-full h-full bg-white p-4 box-border">
           <!-- isi search -->
-          <x-partials.mobile.header.search-card />
+          <x-partials.mobile.header.search-card user="$user" />
         </div>
       </div>
 
@@ -36,7 +48,7 @@
 
     <div id="menuHamburgerContent" class="fixed top-22 left-0 w-full h-[calc(100vh-5.5rem)] bg-black/30 hidden z-50">
       <div class="absolute top-0 w-full h-full bg-white p-4 box-border">
-        <x-public.header.card-profile-kanan />
+        <x-public.header.card-profile-kanan :user="$user" />
       </div>
     </div>
   </div>
@@ -46,7 +58,7 @@
   <div class="fixed top-0 left-0 w-full bg-white flex items-center px-3 z-50">
   {{-- kiri start --}}
   <div class="relative flex items-center md:w-82.5 gap-2">
-    <a id="fbLogo" href=""><i class="fa-brands fa-facebook text-blue-600 text-[40px]"></i></a>
+    <a id="fbLogo" href="/"><i class="fa-brands fa-facebook text-blue-600 text-[40px]"></i></a>
     
     <button id="arrowLeftHeader" class="hover:bg-gray-200 rounded-full px-2 py-1.5 cursor-pointer hidden"><i class="fa-solid fa-arrow-left"></i></button>
     
@@ -92,7 +104,7 @@
 
     <x-public.header.menu-kanan tooltip="Notifikasi">
       <x-slot:trigger>
-        <i class="fa-solid fa-bell"></i>
+        <i class="fa-solid fa-bell" data-type="mobile"></i>
       </x-slot:trigger>
 
       <x-public.header.card-notif-kanan />
@@ -100,11 +112,11 @@
 
     <x-public.header.menu-kanan tooltip="Akun">
       <x-slot:trigger>
-        <img src="{{asset('images/img-default.png')}}" alt="" class="rounded-full h-7.5 w-7">
+        <img src="{{ $user?->avatar ? asset('storage/' . $user?->avatar) : asset('images/img-default.png')}}" alt="" class="rounded-full h-7.5 w-7 object-cover">
         <i class="fa-solid fa-chevron-down absolute text-xs rounded-full bottom-0 right-0 bg-gray-200 outline-white border-2 border-white"></i>
       </x-slot:trigger>
 
-      <x-public.header.card-profile-kanan />
+      <x-public.header.card-profile-kanan :user="$user" />
     </x-public.header.menu-kanan>
     {{-- icon menu header kanan end --}}
 

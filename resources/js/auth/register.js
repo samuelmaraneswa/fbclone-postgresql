@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("formRegister")
+  const btnSubmit = document.getElementById("submitRegister")
+
   if(!form) return
 
   function showValidationErrors(errors){
@@ -17,6 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = "Loading..."
+    btnSubmit.style.cursor = "not-allowed"
 
     const formData = new FormData(form);
 
@@ -39,6 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if(data.errors){
           showValidationErrors(data.errors);
         }
+        
+        btnSubmit.disabled = false
+        btnSubmit.innerHTML = "Submit"
+        btnSubmit.style.cursor = "pointer"
+
         return;
       }
 
@@ -56,8 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = data.redirect
       })
 
+      btnSubmit.disabled = false
+      btnSubmit.innerHTML = "Submit"
+      btnSubmit.style.cursor = "pointer"
+
     }catch(err){
       console.error("Network error:", err)
+
+      btnSubmit.disabled = false
+      btnSubmit.innerHTML = "Submit"
+      btnSubmit.style.cursor = "pointer"
     }
   })
 })

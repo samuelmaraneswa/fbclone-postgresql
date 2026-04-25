@@ -3,7 +3,7 @@
 <div class="flex flex-col bg-white shadow-sm rounded-lg p-4 mt-2">
   <h1 class="font-semibold text-2xl my-2">Detail Pribadi</h1>
   
-  <div class="w-250 text-gray-700 font-semibold">
+  <div class="w-full md:w-250 text-gray-700 font-semibold overflow-x-auto">
     <table class="w-full">
       <body>
         <tr>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
           <td class="p-1">Email</td>
-          <td class="p-1">: {{$user->email}}</td>
+          <td class="p-1 whitespace-nowrap">: {{$user->email}}</td>
         </tr>
       </body>
     </table>

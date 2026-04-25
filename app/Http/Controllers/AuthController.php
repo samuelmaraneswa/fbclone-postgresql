@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -58,15 +57,11 @@ class AuthController extends Controller
       'email' => $validated['email'],
       'password' => $validated['password'],
     ]);
-    
-    Auth::login($user);
-
-    $user->sendEmailVerificationNotification();
 
     return response()->json([
       'status' => 'success',
       'message' => 'Register berhasil',
-      'redirect' => route('verification.notice')
+      'redirect' => route('login')
     ]);
   }
 

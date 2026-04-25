@@ -19,6 +19,8 @@
 <body class="bg-gray-100 md:pt-17 pt-22">
   <x-public.header.header />
     
-  {{$slot}}
+  {{$slot}} 
+
+  <x-partials.modal_post />
 </body>
 </html>
