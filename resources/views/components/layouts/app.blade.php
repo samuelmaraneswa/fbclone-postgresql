@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="user-id" content="{{ auth()->id() }}">
   <title>Facebook</title>
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,5 +23,10 @@
   {{$slot}} 
 
   <x-partials.modal_post />
+
+  <x-partials.sidebar-kanan.icon-pesan-floating />
+
+  <x-partials.sidebar-kanan.chatbox :friends="$friends" />
+  <x-partials.sidebar-kanan.pesan-perorang />
 </body>
 </html>

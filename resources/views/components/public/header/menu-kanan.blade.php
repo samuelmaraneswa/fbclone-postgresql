@@ -1,7 +1,7 @@
 <div class="menu-kanan-item">
   
   <div class="group relative">
-    <button class="menu-kanan-btn-header px-1.5 py-1 rounded-full bg-gray-200 hover:bg-gray-300 cursor-pointer">
+    <button class="menu-kanan-btn-header relative px-1.5 py-1 rounded-full bg-gray-200 hover:bg-gray-300 cursor-pointer">
       {{$trigger}}
     </button>
 

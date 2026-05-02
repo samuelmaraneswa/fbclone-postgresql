@@ -9,6 +9,12 @@
       <form action="{{route('login.process')}}" method="POST">
         @csrf
 
+        @if ($errors->any())
+          <div class="bg-red-100 text-red-700 px-3 py-2 rounded mx-4 mt-4">
+            {{ $errors->first() }}
+          </div>
+        @endif
+
         <div class="p-4 flex flex-col space-y-4 mt-4">
           <input type="text" name="email" value="{{old('email')}}" class="px-3 py-2 border border-gray-300 rounded focus:outline-none" placeholder="Email" autocomplete="off">
 

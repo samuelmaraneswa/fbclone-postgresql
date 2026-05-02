@@ -94,7 +94,7 @@
         <div class="group relative tooltip-parent">
           <button class="p-0.5 cursor-pointer rounded-full bg-blue-400 text-white border-2 border-white relative z-10"><i class="fa-solid fa-thumbs-up"></i></button>
 
-          <x-partials.tooltip-post title="Suka" />
+          {{-- <x-partials.tooltip-post title="Suka" /> --}}
         </div>
 
       </div>
@@ -123,7 +123,7 @@
             <i class="fa-solid fa-comment"></i>
           </button>
 
-          <x-partials.tooltip-post />
+          {{-- <x-partials.tooltip-post /> --}}
         </div>
       </div>
 
@@ -138,7 +138,7 @@
             <i class="fa-solid fa-share"></i>
           </button>
 
-          <x-partials.tooltip-post />
+          {{-- <x-partials.tooltip-post /> --}}
         </div>
       </div>
     </div>

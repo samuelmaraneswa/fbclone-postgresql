@@ -20,7 +20,18 @@ class NotificationsController extends Controller
       $query->where('is_read', false);
     }
 
-    $notifications = $query->limit(20)->get();
+    $notifications = $query->limit(20)->get()->map(function ($notification) {
+      return [
+        'id' => $notification->id,
+        'type' => $notification->type,
+        'user_id' => $notification->user_id,
+        'from_user_id' => $notification->from_user_id,
+        'reference_id' => $notification->reference_id,
+        'is_read' => $notification->is_read,
+        'created_at' => $notification->created_at->diffForHumans(),
+        'from_user' => $notification->fromUser,
+      ];
+    });
 
     return response()->json([
       'data' => $notifications

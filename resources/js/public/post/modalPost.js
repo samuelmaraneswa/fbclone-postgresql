@@ -76,14 +76,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainLikeCount = postItem.querySelector(".like-count");
     const modalLikeCount = modal.querySelector(".modal-like-count");
 
-    if (mainLikeBtn.classList.contains("text-blue-600")) {
+    if (mainLikeBtn && mainLikeBtn.classList.contains("text-blue-600")) {
       modalLikeBtn.classList.add("text-blue-600");
+      modal.querySelector(".modal-btn-like").classList.add("text-blue-600");
     } else {
       modalLikeBtn.classList.remove("text-blue-600");
+      modal.querySelector(".modal-btn-like").classList.remove("text-blue-600");
     }
 
     modalLikeCount.innerText = mainLikeCount
       ? mainLikeCount.innerText.trim()
+      : "0";
+
+    const mainCommentCount = postItem.querySelector(
+      ".text-base .text-gray-500"
+    );
+    const modalCommentCount = modal.querySelector(".modal-comment-count");
+
+    modalCommentCount.innerText = mainCommentCount
+      ? mainCommentCount.innerText.trim()
       : "0";
 
     // render media

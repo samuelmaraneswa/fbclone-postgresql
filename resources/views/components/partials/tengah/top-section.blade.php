@@ -1,5 +1,5 @@
 <div class="hidden sm:flex items-center bg-white rounded-lg border border-gray-200 shadow-[0_1px_6px_rgba(0,0,0,0.12)] p-3 gap-3">
-  <img src="{{asset('images/img-default.png')}}" alt="" class="w-11 h-11 rounded-full p-1 bg-gray-100">
+  <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/img-default.png') }}" alt="" class="w-11 h-11 rounded-full p-1 bg-gray-100 object-cover">
 
   <div class="flex-1">
     <input id="" type="text" class="inputCreatePost bg-gray-100 rounded-full px-4 py-2 w-full focus:outline-none" placeholder="Apa yang Anda pikirkan, Neswa?">

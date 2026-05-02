@@ -5,7 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!loginPassword || !togglePasswordLogin || !eyeIcon) return
 
-  togglePasswordLogin.addEventListener("click", () => {
+  togglePasswordLogin.addEventListener("click", (e) => {
+    if (e.detail === 0) return;
+    
+    e.preventDefault();
+
     if(loginPassword.type === 'password'){
       loginPassword.type = 'text'
       eyeIcon.classList.replace('fa-eye', 'fa-eye-slash')

@@ -64,7 +64,7 @@
       <div class="modal-action mt-4 flex gap-2 md:gap-1 md:justify-between">
 
         <div class="">
-          <button id="modalLikeIcon" class="modal-like-icon rounded-full h-6 w-6 md:bg-gray-200 hover:bg-gray-300 cursor-pointer"><i class="fa-solid fa-thumbs-up"></i></button>
+          <button id="modalLikeIcon" class="modal-like-icon rounded-full h-6 w-6 md:bg-gray-200 hover:bg-gray-300"><i class="fa-solid fa-thumbs-up"></i></button>
           <span class="modal-like-count -ml-1 md:ml-0">{{$total_like ?? '0'}}</span>
         </div>
 
@@ -99,22 +99,16 @@
       </div>
 
       {{-- comment section --}}
-      <div id="modalCommentList" class="modal-comment-list hidden md:flex items-start gap-2 border border-gray-300 rounded-lg p-2 mt-2 fixed md:static h-full md:h-auto bg-white inset-0 z-70">
-        {{-- top kanan --}}
-        <img src="{{$img_comment ?? asset('images/img-default.png')}}" alt="" class="md:static h-9.5 w-9 bg-gray-100 border border-gray-200 rounded-full">
+      <div id="modalCommentList" class="modal-comment-list hidden md:flex flex-col items-start gap-2 border border-gray-300 rounded-lg p-2 mt-2 fixed md:static max-h-154.5 md:max-h-92 bg-white inset-0 z-70 overflow-y-auto">
 
-        <div class=" bg-gray-100 rounded-lg p-1">
-          <h3 class="font-semibold text-black">{{($first_name_user_comment || $last_name_user_comment) ? $first_name_user_comment . ' ' . $last_name_user_comment : 'Comment name'}}</h3>
-
-          {{-- comment teks --}}
-          <p class="text-gray-500">{{$comment ?? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum sunt voluptates porro rem nesciunt distinctio repellendus ex repudiandae voluptatem ipsam.'}}</p>
-        </div>
       </div>
 
       <div id="modalCommentInput" class="modal-comment-input hidden md:bottom-1 p-2 rounded-lg w-full md:flex items-center gap-2 fixed z-80 bg-none bottom-0 left-0 md:absolute md:left-auto">
-        <img src="{{$my_image ?? asset('images/img-default.png')}}" alt="" class="hidden md:block md:static h-10 w-10 rounded-full bg-gray-200">
+
+        <img src="{{ auth()->user()?->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/img-default.png') }}" alt="" class="hidden md:block md:static h-10 w-10 object-cover rounded-full bg-gray-200">
+
         <div class="relative flex items-center w-full">
-          <input type="text" class="text-black border w-full md:w-[98%] rounded py-1 pl-1.5 pr-4 focus:outline-none bg-gray-200 border-gray-300" placeholder="Tulis komentar...">
+          <input type="text" class="text-black border w-full md:w-[98%] rounded py-1 pl-1.5 pr-7 focus:outline-none bg-gray-200 border-gray-300" placeholder="Tulis komentar...">
 
           <button class="modal-send absolute right-3 text-gray-500 cursor-pointer"><i class="fa-solid fa-paper-plane cursor-pointer"></i></button>
         </div>

@@ -1,1 +1,1 @@
-<x-public.tengah.profile.post :user="$user" />
+<x-public.tengah.profile.post :user="$user" :posts="$posts" />

@@ -1,5 +1,17 @@
-<h1 class="font-semibold text-2xl my-2">Teman Anda</h1>
+<h1 class="font-semibold text-2xl my-2">
+  {{ $user->id === auth()->id()
+    ? 'Teman Anda'
+    : 'Teman ' . $user->first_name }}
+</h1>
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
-  <x-public.tengah.profile.teman :user="$user" />
-</div>
+@if ($friends->count())
+  <x-public.tengah.profile.teman :user="$user" :friends="$friends"  />
+@else
+  <div class="text-center py-6 text-gray-500 mb-20">
+    <p class="font-medium">
+      {{ $user->id === auth()->id()
+        ? 'Anda belum memiliki teman'
+        : $user->first_name . ' belum memiliki teman lain' }}
+    </p>
+  </div>
+@endif

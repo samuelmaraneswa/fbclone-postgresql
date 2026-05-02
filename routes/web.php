@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Public\FriendController;
+use App\Http\Controllers\Public\MessageController;
+use App\Http\Controllers\Public\MessagesController;
 use App\Http\Controllers\Public\NotificationsController;
 use App\Http\Controllers\Public\PostsController;
 use App\Http\Controllers\Public\ProfileController;
@@ -100,4 +102,15 @@ Route::prefix('notifications')->name('notifications.')->middleware('auth')->grou
 Route::prefix('posts')->name('posts.')->middleware('auth')->group(function () {
   Route::post('/store', [PostsController::class, 'store'])->name('store');
   Route::post('/like', [PostsController::class, 'like'])->name('like');
+  Route::post('/comment', [PostsController::class, 'comment'])->name('comment');
+  Route::get('/{postId}/comments', [PostsController::class, 'getComments'])->name('comments');
+  Route::get('/{id}', [PostsController::class, 'show'])->name('show');
+});
+
+Route::prefix('messages')->name('messages.')->middleware('auth')->group(function () {
+  Route::get('/conversations', [MessagesController::class, 'conversations'])->name('conversations');
+  Route::get('/unread', [MessagesController::class, 'unreadConversations'])->name('unread');
+  Route::get('/unread-count', [MessagesController::class, 'unreadCount']);
+  Route::get('/{userId}', [MessagesController::class, 'index'])->name('index'); 
+  Route::post('/', [MessagesController::class, 'store'])->name('store'); 
 });

@@ -25,7 +25,7 @@
         {{-- kanan section --}}
         @if ($user->id === auth()->id())
           <div class="flex items-center gap-2">
-            <button class="py-1.5 px-3 bg-blue-600 hover:bg-blue-700 cursor-pointer rounded-lg text-white font-semibold">Posting sesuatu</button>
+            <button class="inputCreatePost py-1.5 px-3 bg-blue-600 hover:bg-blue-700 cursor-pointer rounded-lg text-white font-semibold">Posting sesuatu</button>
             
             <a href="{{route('profile.edit')}}">
               <button class="py-1.5 px-3 bg-gray-300 hover:bg-gray-400 rounded-lg cursor-pointer font-semibold">
@@ -86,17 +86,18 @@
             Lainnya <i class="fa-solid fa-caret-down cursor-pointer"></i>
           </button>
 
-          <div id="lainnyaProfileMenu" class="absolute bg-white left-16 shadow-sm rounded-lg cursor-pointer text-left hidden">
+          {{-- <div id="lainnyaProfileMenu" class="absolute bg-white left-16 shadow-sm rounded-lg cursor-pointer text-left hidden">
             <a href="#" class="block pl-2 pr-8 py-2 hover:bg-gray-100">Video</a>
             <a href="#" class="block pl-2 pr-8 py-2 whitespace-nowrap text-left hover:bg-gray-100">Check-in</a>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
 
     <div id="profileContent" class="w-full md:w-225 items-center justify-center">
-      @include('public.profile.tabs.' . $tab, ['user' => $user])
+      @include('public.profile.tabs.' . $tab, ['user' => $user, 'posts' => $posts, 'friends' => $friends, 'photos' => $photos])
     </div>
 
+    <x-partials.tengah.post.create-post />
   </div>
 </x-layouts.app>

@@ -9,7 +9,7 @@
     
     {{-- kanan --}}
     <div class="flex items-center gap-2 text-[18px] min-w-0 overflow-hidden">
-      <button class="bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center">
+      <button class="inputCreatePost bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center">
         <i class="fa-solid fa-plus"></i>
       </button>
 
@@ -18,8 +18,9 @@
       </button>
 
       <div class="">
-        <button id="btnNotifMobile" class="bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center">
+        <button id="btnNotifMobile" class="relative bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center">
           <i class="fa-solid fa-bell" data-type="mobile"></i>
+          <span class="notif-badge absolute text-white bg-red-500 rounded-full px-1 py-0 text-xs top-0 right-0"></span>
         </button>
 
         <x-public.header.card-notif-kanan-mobile />
@@ -33,9 +34,14 @@
         </div>
       </div>
 
-      <button class="bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center">
+      <div class="">
+       <button id="btnMessengerMobile" class="relative bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center">
         <i class="fa-brands fa-facebook-messenger"></i>
+        <span class="pesan-badge absolute text-white bg-red-500 rounded-full px-1 py-0 text-xs top-0 right-0"></span>
       </button>
+
+        <x-public.header.card-messenger-kanan-mobile />
+      </div>
     </div>
   </div>
 
@@ -96,7 +102,8 @@
 
     <x-public.header.menu-kanan tooltip="Messenger">
       <x-slot:trigger>
-        <i class="fa-brands fa-facebook-messenger"></i>
+        <i class="fa-brands fa-facebook-messenger" data-open-messenger></i>
+        <span class="pesan-badge absolute text-white bg-red-500 rounded-full px-1 py-0 text-xs top-0"></span>
       </x-slot:trigger>
 
       <x-public.header.card-messenger-kanan />
@@ -105,6 +112,7 @@
     <x-public.header.menu-kanan tooltip="Notifikasi">
       <x-slot:trigger>
         <i class="fa-solid fa-bell" data-type="mobile"></i>
+        <span class="notif-badge absolute text-white bg-red-500 rounded-full px-1 py-0 text-xs top-0"></span>
       </x-slot:trigger>
 
       <x-public.header.card-notif-kanan />

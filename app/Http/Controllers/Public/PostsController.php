@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Notification;
 use App\Models\Post;
 use App\Models\PostMedia;
 use App\Models\PostReaction;
@@ -76,13 +78,32 @@ class PostsController extends Controller
     
     if($like){
       $like->delete();
+
+      Notification::where('type', 'post_like')
+        ->where('from_user_id', $userId)
+        ->where('reference_id', $postId)
+        ->delete();
+
       $status = 'unliked';
     }else{
-      PostReaction::create([
+      $newLike = PostReaction::create([
         'post_id' => $postId,
         'user_id' => $userId,
         'type' => 'like'
       ]);
+
+      $post = Post::find($postId);
+
+      // notif hanya jika bukan like post sendiri
+      if ($post && $post->user_id != $userId) {
+        Notification::create([
+          'user_id' => $post->user_id,
+          'from_user_id' => $userId,
+          'type' => 'post_like',
+          'reference_id' => $postId,
+          'is_read' => false,
+        ]);
+      }
 
       $status = 'liked';
     }
@@ -93,5 +114,69 @@ class PostsController extends Controller
       'status' => $status,
       'total' => $total
     ]);
+  }
+
+  public function comment(Request $request)
+  {
+    $request->validate([
+      'post_id' => 'required|exists:posts,id',
+      'content' => 'required|string|max:1000',
+    ]);
+
+    $comment = Comment::create([
+      'post_id' => $request->post_id,
+      'user_id' => Auth::id(),
+      'parent_id' => null,
+      'content' => $request->content,
+    ]);
+
+    $post = Post::find($request->post_id);
+    if ($post && $post->user_id != Auth::id()) {
+      Notification::create([
+        'user_id' => $post->user_id,
+        'from_user_id' => Auth::id(),
+        'type' => 'post_comment',
+        'reference_id' => $request->post_id,
+        'is_read' => false,
+      ]);
+    }
+
+    $total = Comment::where('post_id', $request->post_id)->count();
+
+    return response()->json([
+      'status' => 'success',
+      'message' => "Komentar berhasil di tambahkan",
+      'comment' => $comment,
+      'total' => $total
+    ]);
+  }
+
+  public function getComments($postId)
+  {
+    $comments = Comment::with('user')
+      ->where('post_id', $postId)
+      ->whereNull('parent_id')
+      ->latest()
+      ->get();
+
+    return response()->json([
+      'status' => 'success',
+      'comments' => $comments,
+    ]);
+  }
+
+  public function show($id)
+  {
+    $user = Auth::user();
+
+    $post = Post::with(['user', 'media'])
+      ->withCount(['reactions', 'comments', 'shares'])
+      ->findOrFail($id);
+
+    $post->is_liked = $post->reactions()
+      ->where('user_id', $user->id)
+      ->exists();
+
+    return view('public.posts.show', compact('post', 'user'));
   }
 }
