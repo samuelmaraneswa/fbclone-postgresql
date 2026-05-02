@@ -2,8 +2,11 @@
 
 <div class="bg-white rounded-lg overflow-hidden shrink-0 friend-wrapper" data-id="{{ $user->id }}">
   <a href="{{route('profile.show', $user->id)}}">
-    <img src="{{ asset('storage/' . $user->avatar) }}" alt="" class="w-35 h-35 object-cover">
-
+    <img 
+      src="{{ ($friend->avatar && file_exists(public_path('storage/' . $friend->avatar))) 
+        ? asset('storage/' . $friend->avatar) 
+        : asset('images/img-default.png') }}" 
+      class="w-full h-full object-cover">
     <p class="p-2 font-semibold">{{$user->name}}</p>
   </a>
 
