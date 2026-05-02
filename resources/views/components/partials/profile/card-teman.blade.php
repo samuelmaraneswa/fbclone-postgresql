@@ -2,7 +2,11 @@
 
 <div class="w-full rounded-lg overflow-hidden">
   <div class="shadow {{$isTemanTab ? 'bg-gray-100' : 'bg-white'}} w-full h-55">
-    <img src="{{$friend->avatar ? asset('storage/' . $friend->avatar) : asset('images/jack.webp')}}" alt="" class="w-full h-full object-cover">
+    <img 
+      src="{{ ($friend->avatar && file_exists(public_path('storage/' . $friend->avatar))) 
+        ? asset('storage/' . $friend->avatar) 
+        : asset('images/img-default.png') }}" 
+      class="w-full h-full object-cover">
   </div>
 
   <a href="{{route('profile.show', $friend->id)}}">
