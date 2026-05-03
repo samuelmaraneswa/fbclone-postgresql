@@ -9,9 +9,19 @@
     <hr class="my-4 border border-gray-300">
 
     <div class="flex items-center gap-4">
-      <img src="{{asset('images/img-default.png')}}" alt="" class="h-12 w-12 p-1 rounded-full bg-gray-200">
+
+      <img 
+        src="{{ auth()->user()->avatar 
+          ? asset('storage/' . auth()->user()->avatar) 
+          : asset('images/img-default.png') }}" 
+        class="h-12 w-12 p-1 rounded-full bg-gray-200 object-cover"
+      >
+      
       <div class="">
-        <p class="font-semibold">Neswa Tob</p>
+        <p class="font-semibold">
+          {{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}
+        </p>
+
         <select name="" id="" class="bg-gray-200 text-xs rounded-lg p-1 font-semibold cursor-pointer">
           <option value="">Teman</option>
           <option value="">Public</option>
@@ -22,7 +32,7 @@
 
     <form id="formCreatePost" enctype="multipart/form-data">
       <div class="mb-22"> 
-        <input name="content" type="text" placeholder="Apa yang anda pikirkan, Neswa?" class="py-6 text-xl w-full focus:outline-none">
+        <input name="content" type="text" placeholder="Apa yang anda pikirkan, {{ auth()->user()->first_name }}?" class="py-6 text-xl w-full focus:outline-none">
       </div>
 
       <input type="file" name="mediaCreatePost[]" multiple accept="image/*,video/*" class="block w-full text-sm text-gray-600

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Friend;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -23,7 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-      URL::forceScheme('https');
+    // URL::forceScheme('https');
+      if (App::environment('production')) {
+        URL::forceScheme('https');
+      }
 
       View::composer('*', function ($view) {
         if (!Auth::check()) return;

@@ -40,12 +40,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       allMessages.innerHTML = '';
 
+      // if (!data.length) {
+      //   allMessages.innerHTML = `
+      //     <div class="text-center text-gray-500 mt-8">
+      //       <p>Tidak ada obrolan</p>
+      //     </div>
+      //   `;
+      //   return;
+      // }
+
       if (!data.length) {
-        allMessages.innerHTML = `
-          <div class="text-center text-gray-500 mt-8">
-            <p>Tidak ada obrolan</p>
-          </div>
-        `;
+        [allMessagesDesktop, allMessagesMobile].forEach(container => {
+          if (!container) return;
+          container.innerHTML = `
+            <div class="text-center text-gray-500 mt-8">
+              <p>Anda belum memiliki percakapan.</p>
+            </div>
+          `;
+        });
         return;
       }
 

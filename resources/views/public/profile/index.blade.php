@@ -58,11 +58,15 @@
               </div>
             </div>
             
-            <a href="{{route('profile.edit')}}">
-              <button class="py-1.5 px-3 bg-gray-300 hover:bg-gray-400 rounded-lg cursor-pointer font-semibold">
-                <i class="fa-solid fa-pen"></i> Kirim Pesan
-              </button>
-            </a>
+            <button 
+              class="py-1.5 px-3 bg-gray-300 hover:bg-gray-400 rounded-lg cursor-pointer font-semibold"
+              data-open-chat="user"
+              data-user-id="{{ $user->id }}"
+              data-user-name="{{ $user->first_name . ' ' . $user->last_name }}"
+              data-user-avatar="{{ $user->avatar ? asset('/storage/' . $user->avatar) : asset('images/img-default.png')}}"
+            >
+              <i class="fa-solid fa-pen"></i> Kirim Pesan
+            </button>
           </div>
         @endif
 
