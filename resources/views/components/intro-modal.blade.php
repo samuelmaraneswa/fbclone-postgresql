@@ -1,4 +1,4 @@
-<div id="introModal" class="fixed inset-0 bg-black/70 items-center justify-center p-2">
+<div id="introModal" class="fixed inset-0 bg-black/70 flex items-center justify-center p-2 hidden">
   <div class="bg-white p-6 rounded-lg relative md:w-175 md:h-81.25">
 
     <button id="closeIntro" class="absolute -top-2 -right-2 rounded-full bg-black text-white px-1 py-0.5 cursor-pointer border border-white"><i class="fa-solid fa-x"></i></button>

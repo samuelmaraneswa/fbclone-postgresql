@@ -23,7 +23,7 @@ import './public/pesan/open-pesan'
 import './public/pesan/pesan-perorangan'
 import './public/pesan/pesan'
 import './public/header/messengerHeaderMobile'
-import './public/introModal'
+import './introModal'
 
 // function
 async function loadUnreadCount() {
