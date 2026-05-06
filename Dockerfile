@@ -16,6 +16,13 @@ RUN apt-get update && apt-get install -y \
 # copy semua project (termasuk public/build dari lokal)
 COPY --from=builder /app /app
 
+RUN rm -rf public/storage && \
+    ln -s /app/storage/app/public /app/public/storage
+
 EXPOSE 10000
 
-CMD php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
+CMD rm -rf public/storage && \
+    ln -s /app/storage/app/public /app/public/storage && \
+    php artisan config:clear && \
+    php artisan migrate --force && \
+    php artisan serve --host=0.0.0.0 --port=8000
