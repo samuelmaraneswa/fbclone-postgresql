@@ -36,4 +36,6 @@
     </div>
 
   </div>
+  
+  <x-intro-modal />
 </x-layouts.auth>
