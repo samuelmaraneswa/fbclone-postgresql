@@ -28,5 +28,7 @@
 
   <x-partials.sidebar-kanan.chatbox :friends="$friends" />
   <x-partials.sidebar-kanan.pesan-perorang />
+
+  <x-intro-modal />
 </body>
 </html>
