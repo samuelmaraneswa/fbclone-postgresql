@@ -114,3 +114,17 @@ Route::prefix('messages')->name('messages.')->middleware('auth')->group(function
   Route::get('/{userId}', [MessagesController::class, 'index'])->name('index'); 
   Route::post('/', [MessagesController::class, 'store'])->name('store'); 
 });
+
+Route::get('/test-upload', function () {
+  return view('test-upload');
+});
+
+Route::post('/test-upload', function (\Illuminate\Http\Request $request) {
+  $request->validate([
+    'image' => 'required|image'
+  ]);
+
+  $path = $request->file('image')->store('test', 'public');
+
+  return $path; 
+});
