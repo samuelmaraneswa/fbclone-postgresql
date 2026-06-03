@@ -26,11 +26,11 @@ class HomeController extends Controller
     $posts = Post::with(['user', 'media'])->withCount(['reactions', 'comments', 'shares'])
         ->where(function ($q) use ($user){
           $q->where('user_id', $user->id)
-            ->orWhere('user_id', function ($sub) use ($user){
+            ->orWhereIn('user_id', function ($sub) use ($user) {
               $sub->select('friend_id')
-                  ->from('friends')
-                  ->where('user_id', $user->id)
-                  ->where('status', 'accepted');
+                ->from('friends')
+                ->where('user_id', $user->id)
+                ->where('status', 'accepted');
             })
             ->orWhereIn('user_id', function ($sub) use ($user){
               $sub->select('user_id')
